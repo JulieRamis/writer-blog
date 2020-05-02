@@ -1,0 +1,22 @@
+{% if post is defined and post.get('id') is defined  %}
+    {% set route='editArticle&articleId=' ~ post.get('id') %}
+    {% set submit='mettre à jour' %}
+    {% set title=post.get('title') %}
+    {% set content=post.get('content') %}
+
+{% else %}
+    {% set route='addArticle' %}
+    {% set submit='Envoyer' %}
+    {% set title='' %}
+    {% set content='' %}
+{% endif %}
+
+
+<form method="post" action="../public/index.php?route={{ route }}">
+    <label for="title">Titre</label>
+    <input type="text" id="title" name="title" value="{{title}}">
+    <label for="content">Contenu</label>
+    <textarea id="content" name="content">{{content}}</textarea>
+
+    <input type="submit" value="{{submit}}" id="submit" name="submit">
+</form>

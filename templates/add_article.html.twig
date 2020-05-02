@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+ nouvel article
+{% endblock %}
+{% block body %}
+    <div>
+        {% include 'form_article.html.twig' %}
+        <a href="../public/index.php">Retour à l'accueil</a>
+    </div>
+{% endblock %}
