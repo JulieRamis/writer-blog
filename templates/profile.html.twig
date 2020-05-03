@@ -4,10 +4,12 @@
 {% endblock %}
 
 {% block body %}
-          {{ session.show('update_password') }}
-        <h2>{{ session.get('pseudo') }}</h2>
-        <p>{{ session.get('id') }}</p>
 
-         <a href="../public/index.php?route=updatePassword">Modifier son mot de passe</a>
+    {{ session.show('update_password') }}
+    <h2>{{ session.get('pseudo') }}</h2>
+    <p>{{ session.get('id') }}</p>
+
+    <a href="../public/index.php?route=updatePassword">Modifier son mot de passe</a>
+    <a href="../public/index.php?route=deleteAccount">Supprimer son compte</a>
 
 {% endblock %}
