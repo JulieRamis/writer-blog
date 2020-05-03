@@ -13,7 +13,10 @@ class  FrontController extends Controller
         $articles = $this->articleDAO->getArticles();
 
 
-        echo $this->twig->render('home.html.twig',['articles'=>$articles] );
+        echo $this->twig->render('home.html.twig',[
+            'articles'=>$articles,
+            'session'=>$this->session
+        ] );
     }
 
     public function article($articleId)
@@ -58,7 +61,7 @@ class  FrontController extends Controller
             }
             echo $this->twig->render('register.html.twig', [
                 'post' => $post,
-                'errors' => $errors,
+                'errors' => $errors
             ]);
 
         }

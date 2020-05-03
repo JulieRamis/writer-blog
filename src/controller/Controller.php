@@ -30,7 +30,6 @@ abstract class Controller
     public function __construct()
     {
 
-
         $this->articleDAO = new ArticleDAO();
         $this->commentDAO = new CommentDAO();
         $this->userDAO = new userDAO();
@@ -42,8 +41,10 @@ abstract class Controller
         $this->session = $this->request->getSession();
         $this->loader=new FilesystemLoader('../templates/');
         $this->twig = new Environment($this->loader,['debug'=>true]);
+        $this->twig->addGlobal("session", $this->session);
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
 
     }
+
 }
 

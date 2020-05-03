@@ -24,6 +24,7 @@ class UserDAO extends DAO
             return '<p>Le pseudo existe déjà</p>';
         }
     }
+
     public function login(Parameter $post)
     {
         $sql = 'SELECT id, password FROM user WHERE pseudo = ?';
@@ -36,4 +37,9 @@ class UserDAO extends DAO
         ];
     }
 
+    public function updatePassword(Parameter $post, $pseudo)
+    {
+        $sql = 'UPDATE user SET password = ? WHERE pseudo = ?';
+        $this->createQuery($sql, [password_hash($post->get('password'), PASSWORD_BCRYPT), $pseudo]);
+    }
 }

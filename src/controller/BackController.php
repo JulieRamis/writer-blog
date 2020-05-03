@@ -26,7 +26,6 @@ class BackController extends Controller
 
     public function editArticle(Parameter $post, $articleId)
     {
-        var_dump($articleId);
         $article = $this->articleDAO->getArticle($articleId);
         if($post->get('submit')) {
             $errors = $this->validation->validate($post, 'Article');
@@ -68,5 +67,25 @@ class BackController extends Controller
     public function profile()
     {
         echo $this->twig->render('profile.html.twig');
+    }
+
+    public function updatePassword(Parameter $post)
+    {
+        if($post->get('submit')) {
+            $this->userDAO->updatePassword($post, $this->session->get('pseudo'));
+            $this->session->set('update_password', 'Le mot de passe a été mis à jour');
+            header('Location: ../public/index.php?route=profile');
+        }
+        echo $this->twig->render('update_password.html.twig', [
+            'session'=>$this->session
+        ]);
+    }
+
+    public function logout()
+    {
+        $this->session->stop();
+        $this->session->start();
+        $this->session->set('logout', 'A bientôt');
+        header('Location: ../public/index.php');
     }
 }

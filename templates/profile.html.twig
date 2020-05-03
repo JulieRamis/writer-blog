@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+   Mon profil
+{% endblock %}
+
+{% block body %}
+          {{ session.show('update_password') }}
+        <h2>{{ session.get('pseudo') }}</h2>
+        <p>{{ session.get('id') }}</p>
+
+         <a href="../public/index.php?route=updatePassword">Modifier son mot de passe</a>
+
+{% endblock %}
