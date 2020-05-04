@@ -7,13 +7,16 @@
    {% if session.get('pseudo') %}
    <a href="../public/index.php?route=logout">Déconnexion</a>
    <a href="../public/index.php?route=profile">Profil</a>
-   <a href="../public/index.php?route=addArticle">Nouvel article</a>
-
    {% else %}
 
    <a href="../public/index.php?route=register">Inscription</a>
    <a href="../public/index.php?route=login">Connexion</a>
 
+   {% endif %}
+
+   {% if session.get('role') == 'admin' %}
+   <a href="../public/index.php?route=administration">Administration</a>
+   <a href="../public/index.php?route=addArticle">Nouvel article</a>
    {% endif %}
 
    {{ session.show('add_article') }}

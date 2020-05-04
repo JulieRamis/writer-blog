@@ -6,6 +6,10 @@ use App\config\Parameter;
 
 class BackController extends Controller
 {
+    public function administration()
+    {
+        echo $this->twig->render('administration.html.twig');
+    }
     public function addArticle(Parameter $post)
     {
         if($post->get('submit')) {
