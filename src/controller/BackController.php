@@ -9,8 +9,10 @@ class BackController extends Controller
     public function administration()
     {
         $articles = $this->articleDAO->getArticles();
+        $comments = $this->commentDAO->getFlagComments();
         echo $this->twig->render('administration.html.twig', [
-            'articles' => $articles
+            'articles' => $articles,
+            'comments' => $comments
         ]);
     }
     public function addArticle(Parameter $post)
@@ -61,16 +63,22 @@ class BackController extends Controller
     public function deleteArticle($articleId)
     {
         $this->articleDAO->deleteArticle($articleId);
-        $this->session->set('delete_article', 'L\'article a bien été supprimé');
+        $this->session->set('delete_article', 'L\'article a bien été supprimé.');
         header('Location: ../public/index.php?route=administration');
     }
 
+    public function unflagComment($commentId)
+    {
+        $this->commentDAO->unflagComment($commentId);
+        $this->session->set('unflag_comment', 'Le commentaire a bien été désignalé.');
+        header('Location: ../public/index.php?route=administration');
+    }
 
     public function deleteComment($commentId)
     {
         $this->commentDAO->deleteComment($commentId);
-        $this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
-        header('Location: ../public/index.php');
+        $this->session->set('delete_comment', 'Le commentaire a bien été supprimé.');
+        header('Location: ../public/index.php?route=administration');
     }
 
     public function profile()

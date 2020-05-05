@@ -11,6 +11,7 @@
     {{ session.show('add_article') }}
     {{ session.show('edit_article') }}
     {{ session.show('delete_article') }}
+    {{ session.show('delete_comment') }}
 
     <h2>Articles</h2>
     <a href="../public/index.php?route=addArticle">Nouvel article</a>
@@ -22,6 +23,14 @@
 
     <h2>Commentaires signalés</h2>
 
+    {% for comment in comments  %}
+        <h2><a href="../public/index.php?route=article&articleId={{ comment.id }}"></a></h2>
+        {{ comment.pseudo }}
+        {{ comment.content | striptags | slice(0, 150)}}
+        {{ comment.date }}
+        <p><a href="../public/index.php?route=unflagComment&commentId={{ comment.getId() }}">Désignaler le commentaire</a></p>
+        <p><a href="../public/index.php?route=deleteComment&commentId={{ comment.getId() }}">Supprimer le commentaire</a></p>
+    {% endfor %}
     <h2>Utilisateurs</h2>
 
 {% endblock %}
