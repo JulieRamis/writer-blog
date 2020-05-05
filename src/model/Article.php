@@ -14,6 +14,8 @@ class Article
 
     private $date;
 
+    private $author;
+
     public function getId()
     {
         return $this->id;
@@ -46,7 +48,15 @@ class Article
         $this->content = $content;
     }
 
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+    }
     public function getDate()
     {
         return $this->date;

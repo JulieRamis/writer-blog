@@ -16,12 +16,8 @@
 
    {% if session.get('role') == 'admin' %}
    <a href="../public/index.php?route=administration">Administration</a>
-   <a href="../public/index.php?route=addArticle">Nouvel article</a>
    {% endif %}
 
-   {{ session.show('add_article') }}
-   {{ session.show('edit_article') }}
-   {{ session.show('delete_article') }}
    {{ session.show('add_comment') }}
    {{ session.show('flag_comment') }}
    {{ session.show('delete_comment') }}
@@ -33,7 +29,6 @@
 
    <h1>Blog de Jean Forteroche</h1>
    <p>En construction</p>
-   <a href="../public/index.php?route=addArticle">Nouvel article</a>
 
    {% for article in articles  %}
       <h2><a href="../public/index.php?route=article&articleId={{ article.id }}">{{ article.title }}</a></h2>

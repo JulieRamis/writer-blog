@@ -8,16 +8,19 @@ class BackController extends Controller
 {
     public function administration()
     {
-        echo $this->twig->render('administration.html.twig');
+        $articles = $this->articleDAO->getArticles();
+        echo $this->twig->render('administration.html.twig', [
+            'articles' => $articles
+        ]);
     }
     public function addArticle(Parameter $post)
     {
         if($post->get('submit')) {
             $errors = $this->validation->validate($post, 'Article');
             if(!$errors){
-                $this->articleDAO->addArticle($post);
+                $this->articleDAO->addArticle($post, $this->session->get('id'));
                 $this->session->set('add_article', 'Article bien ajouté !');
-                header('Location: ../public/index.php');
+                header('Location: ../public/index.php?route=administration');
             }
             echo $this->twig->render('add_article.html.twig',[
                 'post'=>$post,
@@ -34,9 +37,9 @@ class BackController extends Controller
         if($post->get('submit')) {
             $errors = $this->validation->validate($post, 'Article');
             if(!$errors) {
-                $this->articleDAO->editArticle($post, $articleId);
+                $this->articleDAO->editArticle($post, $articleId, $this->session->get('id'));
                 $this->session->set('edit_article', 'L\' article a bien été modifié');
-                header('Location: ../public/index.php');
+                header('Location: ../public/index.php?route=administration');
             }
             echo $this->twig->render('edit_article.html.twig', [
                 'post' => $post,
@@ -47,6 +50,8 @@ class BackController extends Controller
         $post->set('id', $article->getId());
         $post->set('title', $article->getTitle());
         $post->set('content', $article->getContent());
+        $post->set('author', $article->getAuthor());
+
         echo $this->twig->render('edit_article.html.twig', [
             'post' => $post
         ]);
@@ -57,7 +62,7 @@ class BackController extends Controller
     {
         $this->articleDAO->deleteArticle($articleId);
         $this->session->set('delete_article', 'L\'article a bien été supprimé');
-        header('Location: ../public/index.php');
+        header('Location: ../public/index.php?route=administration');
     }
 
 
@@ -96,15 +101,15 @@ class BackController extends Controller
         $this->logoutOrDelete('delete_account');
     }
 
-    public function logoutOrDelete($param)
+    private function logoutOrDelete($param)
     {
         $this->session->stop();
         $this->session->start();
         if ($param === 'logout'){
-            $this->session->set('logout', 'A bientôt');
+            $this->session->set($param, 'A bientôt');
         }
         else{
-            $this->session->set('delete_account', 'Votre compte a bien été supprimé');
+            $this->session->set($param, 'Votre compte a bien été supprimé');
         }
         header('Location: ../public/index.php');
     }
