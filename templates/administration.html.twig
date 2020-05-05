@@ -33,4 +33,22 @@
     {% endfor %}
     <h2>Utilisateurs</h2>
 
+<table>
+    {% for user in users  %}
+        <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.pseudo }}</td>
+        <td>{{ user.date }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+            {%  if user.role() != 'admin' %}
+            <a href="../public/index.php?route=deleteUser&userId={{ user.getId() }}">Supprimer</a>
+                {% else %}
+            Suppression impossible !
+            {% endif %}
+        </td>
+        </tr>
+      {% endfor %}
+</table>
+
 {% endblock %}

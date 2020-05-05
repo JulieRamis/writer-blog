@@ -10,6 +10,7 @@ class User
     private $pseudo;
     private $password;
     private $date;
+    private $role;
 
     public function getId()
     {
@@ -48,6 +49,16 @@ class User
     public function setDate($date)
     {
         $this->date = $date;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 
 

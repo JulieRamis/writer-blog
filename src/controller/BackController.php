@@ -10,9 +10,11 @@ class BackController extends Controller
     {
         $articles = $this->articleDAO->getArticles();
         $comments = $this->commentDAO->getFlagComments();
+        $users = $this->userDAO->getUsers();
         echo $this->twig->render('administration.html.twig', [
             'articles' => $articles,
-            'comments' => $comments
+            'comments' => $comments,
+            'users' => $users
         ]);
     }
     public function addArticle(Parameter $post)
@@ -31,7 +33,6 @@ class BackController extends Controller
         }
         echo $this->twig->render('add_article.html.twig' );
     }
-
 
     public function editArticle(Parameter $post, $articleId)
     {
@@ -107,6 +108,13 @@ class BackController extends Controller
     {
         $this->userDAO->deleteAccount($this->session->get('pseudo'));
         $this->logoutOrDelete('delete_account');
+    }
+
+    public function deleteUser($userId)
+    {
+        $this->userDAO->deleteUser($userId);
+        $this->session->set('delete_user', 'Le compte de l\'utilisateur a bien été supprimé');
+        header('Location: ../public/index.php?route=administration');
     }
 
     private function logoutOrDelete($param)
