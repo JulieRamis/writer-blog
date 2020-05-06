@@ -2,10 +2,8 @@
 {% block title %}
    Mon profil
 {% endblock %}
-
 {% block body %}
 
-    {{ session.show('update_password') }}
     <h2>{{ session.get('pseudo') }}</h2>
     <p>{{ session.get('id') }}</p>
 

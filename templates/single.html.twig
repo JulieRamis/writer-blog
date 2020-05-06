@@ -9,13 +9,20 @@
         <p>{{ article.content }}</p>
         <p>Créé le : {{ article.date }}</p>
     </article>
-    <div class="actions">
+
+    {% if session.get('role') == 'admin' %}
         <a href= "../public/index.php?route=editArticle&articleId={{ article.getId() }}">Editer l'article</a>
         <a href="../public/index.php?route=deleteArticle&articleId={{ article.getId() }}">Supprimer l'article</a>
+    {% endif %}
+    <div class="actions">
+
     </div>
+    {% if session.get('pseudo') %}
     <h3>Ajouter un commentaire :</h3>
     {{ include('form_comment.html.twig') }}
-
+        {% else %}
+            <p>Connectez-vous ou enregistez-vous pour laisser un commentaire : <a href="../public/index.php?route=login">Connexion </a><a href="../public/index.php?route=register">Inscription</a></p>
+    {% endif %}
     <h3>Commentaires :</h3>
     {% for comment in comments%}
         <strong>{{ comment.pseudo }}</strong>
@@ -28,7 +35,10 @@
             <p></p><a href="../public/index.php?route=flagComment&commentId={{ comment.getId() }}">Signaler le commentaire</a></p>
         {% endif %}
 
-        <p></p><a href="../public/index.php?route=deleteComment&commentId={{ comment.getId() }}">Supprimer le commentaire</a></p>
+        {% if session.get('role') == 'admin' %}
+            <p><a href="../public/index.php?route=deleteComment&commentId={{ comment.getId() }}">Supprimer le commentaire</a></p>
+        {% endif %}
+
 
     {% endfor %}
 {% endblock %}
