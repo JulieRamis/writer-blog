@@ -32,7 +32,6 @@ class  FrontController extends Controller
 
     public function addComment(Parameter $post, $articleId)
     {
-        if($this->checkLoggedIn()){
             if($post->get('submit')) {
                 $this->commentDAO->addComment($post, $articleId);
                 $this->session->set('add_comment', 'Votre commentaire a bien été ajouté');
@@ -47,8 +46,6 @@ class  FrontController extends Controller
                 'post' => $post,
                 'errors' => $errors
             ]);
-    }
-
     }
 
     public function flagComment($commentId)
