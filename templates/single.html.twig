@@ -4,9 +4,10 @@
     {{ article.title}}
 {% endblock %}
 {% block body %}
+    {{ session.show('add_comment') }}
     <article>
         <h2>{{ article.title }}</h2>
-        <p>{{ article.content }}</p>
+        <p>{{ article.content|raw }}</p>
         <p>Créé le : {{ article.date }}</p>
     </article>
 
@@ -32,7 +33,7 @@
         {% if comment.isFlag()%}
             <p>Commentaire déjà signalé</p>
         {% else %}
-            <p></p><a href="../public/index.php?route=flagComment&commentId={{ comment.getId() }}">Signaler le commentaire</a></p>
+            <a href="../public/index.php?route=flagComment&commentId={{ comment.getId() }}">Signaler le commentaire</a></p>
         {% endif %}
 
         {% if session.get('role') == 'admin' %}

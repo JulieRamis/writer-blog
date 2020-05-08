@@ -1,3 +1,6 @@
+<script src="https://cdn.tiny.cloud/1/4lsmrhwwu4zxksgg0vsqozfkos29k9e4ezo4zmijuiumiaae/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>tinymce.init({selector:'textarea'});</script>
+
 {% if post is defined and post.get('id') is defined  %}
     {% set route='editArticle&articleId=' ~ post.get('id') %}
     {% set submit='mettre à jour' %}
@@ -12,16 +15,19 @@
 {% endif %}
 
 
+
 <form method="post" action="../public/index.php?route={{ route }}">
     <label for="title">Titre</label>
     <input type="text" id="title" name="title" value="{{title}}">
+    {{ errors['title'] }}
+
+
     <label for="content">Contenu</label>
     <textarea id="content" name="content">{{content}}</textarea>
+    {{ errors['content'] }}
+
 
     <input type="submit" value="{{submit}}" id="submit" name="submit">
 </form>
 
 
-
-<script src="https://cdn.tiny.cloud/1/4lsmrhwwu4zxksgg0vsqozfkos29k9e4ezo4zmijuiumiaae/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>tinymce.init({selector:'textarea'});</script>

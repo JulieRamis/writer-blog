@@ -43,19 +43,18 @@ class BackController extends Controller
     public function addArticle(Parameter $post)
     {
         if($this->checkAdmin()) {
+            $errors = $this->validation->validate($post, 'Article');
             if($post->get('submit')) {
-                $errors = $this->validation->validate($post, 'Article');
+
                 if(!$errors){
                     $this->articleDAO->addArticle($post, $this->session->get('id'));
                     $this->session->set('add_article', 'Article bien ajouté !');
                     header('Location: ../public/index.php?route=administration');
                 }
-                echo $this->twig->render('add_article.html.twig',[
-                    'post'=>$post,
-                    'errors' => $errors
-                ] );
             }
-            echo $this->twig->render('add_article.html.twig' );
+            echo $this->twig->render('add_article.html.twig', [
+                'errors' => $errors
+            ] );
         }
 
     }
@@ -72,7 +71,6 @@ class BackController extends Controller
                     header('Location: ../public/index.php?route=administration');
                 }
                 echo $this->twig->render('edit_article.html.twig', [
-                    'post' => $post,
                     'errors' => $errors
                 ]);
 

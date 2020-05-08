@@ -18,7 +18,7 @@
 
     {% for article in articles  %}
         <h2><a href="../public/index.php?route=article&articleId={{ article.id }}">{{ article.title }}</a></h2>
-        {{ article.content | striptags | slice(0, 150)}}
+        {{ article.content | striptags | slice(0, 150) | raw}}
     {% endfor %}
 
     <h2>Commentaires signalés</h2>

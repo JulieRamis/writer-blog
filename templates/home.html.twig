@@ -18,7 +18,6 @@
    <a href="../public/index.php?route=administration">Administration</a>
    {% endif %}
 
-   {{ session.show('add_comment') }}
    {{ session.show('flag_comment') }}
    {{ session.show('register') }}
    {{ session.show('login') }}
@@ -31,7 +30,7 @@
 
    {% for article in articles  %}
       <h2><a href="../public/index.php?route=article&articleId={{ article.id }}">{{ article.title }}</a></h2>
-      <p>{{ article.content }}</p>
+      <p>{{ article.content |raw }}</p>
 
    {% endfor %}
 
