@@ -4,7 +4,11 @@
 {% endblock %}
 {% block body %}
     <div>
-        {% include 'form_article.html.twig' %}
+        <form method="post" action="../public/index.php?route=editArticle&articleId={{ post.get('id')}}">
+            {% include 'form_article.html.twig' %}
+
+            <input type="submit" value="mettre à jour" id="submit" name="submit">
+        </form>
         <a href="../public/index.php">Retour à l'accueil</a>
     </div>
 {% endblock %}

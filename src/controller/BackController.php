@@ -51,10 +51,12 @@ class BackController extends Controller
                     $this->session->set('add_article', 'Article bien ajouté !');
                     header('Location: ../public/index.php?route=administration');
                 }
+
             }
             echo $this->twig->render('add_article.html.twig', [
+                'post' => $post,
                 'errors' => $errors
-            ] );
+            ]);
         }
 
     }
@@ -63,6 +65,7 @@ class BackController extends Controller
     {
         if($this->checkAdmin()){
             $article = $this->articleDAO->getArticle($articleId);
+            $post->set('id', $article->getId());
             if($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Article');
                 if(!$errors) {
@@ -70,23 +73,29 @@ class BackController extends Controller
                     $this->session->set('edit_article', 'L\' article a bien été modifié');
                     header('Location: ../public/index.php?route=administration');
                 }
+
                 echo $this->twig->render('edit_article.html.twig', [
-                    'errors' => $errors
+                    'errors' => $errors,
+                    'post' => $post
                 ]);
+                var_dump('toto');
 
             }
-            $post->set('id', $article->getId());
-            $post->set('title', $article->getTitle());
-            $post->set('content', $article->getContent());
-            $post->set('author', $article->getAuthor());
+            else {
 
-            echo $this->twig->render('edit_article.html.twig', [
-                'post' => $post
-            ]);
+                $post->set('title', $article->getTitle());
+                $post->set('content', $article->getContent());
+                $post->set('author', $article->getAuthor());
+
+                echo $this->twig->render('edit_article.html.twig', [
+                    'post' => $post
+                ]);
+                var_dump('tata');
+
+            }
         }
 
     }
-
 
     public function deleteArticle($articleId)
     {
