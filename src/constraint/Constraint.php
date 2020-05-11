@@ -8,9 +8,9 @@ class Constraint
 {
     public function notBlank($name, $value)
     {
-        if(empty($value)){
-            return 'Le champs ' .$name. ' est vide.';
-        }
+        if(empty($value) || preg_match("#^[[:blank:]\n]+$#", $value)){
+                return 'Le champs ' . $name . ' est vide.';
+            }
     }
     public function minLength($name, $value, $minSize)
     {
