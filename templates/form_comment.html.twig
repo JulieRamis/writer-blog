@@ -1,10 +1,11 @@
 {% if content is defined %}
     {% set content=post.get('content') %}
-
+    {% set pseudo=post.get('pseudo') %}
 {% endif %}
 <form method="post" action="../public/index.php?route=addComment&articleId={{article.id}}">
     <label for="pseudo">Pseudo</label><br>
     <input type="text" id="pseudo" name="pseudo" value="{{ session.get('pseudo') }}"><br>
+    {{ errors['pseudo'] }}
     <label for="content">Message</label><br>
     <textarea id="content" name="content"></textarea><br>
     {{ errors['content'] }}

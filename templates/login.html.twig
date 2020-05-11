@@ -4,14 +4,23 @@
 {% endblock %}
 
 {% block body %}
-    <div>
-        <form method="post" action="../public/index.php?route=login">
-            <label for="pseudo">Pseudo</label><br>
-            <input type="text" id="pseudo" name="pseudo">
-            <label for="password">Mot de passe</label><br>
-            <input type="password" id="password" name="password"><br>
-            <input type="submit" value="Connexion" id="submit" name="submit">
-        </form>
-        <a href="../public/index.php">Retour à l'accueil</a>
-    </div>
+
+
+    <div class="form-sign">
+    <body class="text-center">
+    <form class="form-signin" method="post" action="../public/index.php?route=login">
+        <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+        <label for="pseudo" class="sr-only">Pseudo</label>
+        <input type="text" id="pseudo" name="pseudo" class="form-control" placeholder="Pseudo" required autofocus>
+
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" required>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Connexion" id="submit" name="submit">Connexion</button>
+        <p><a href="../public/index.php">Retour à l'accueil</a></p>
+
+    </form>
+    </body></div>
 {% endblock %}
+
+

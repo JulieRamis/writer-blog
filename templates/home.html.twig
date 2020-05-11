@@ -4,11 +4,10 @@
 
 {% endblock %}
 {% block body %}
-
-
-
+    <body>
+    {% include 'navigation.html.twig' %}
    <!-- Page Header -->
-   <header class="masthead">
+   <header class="masthead" id="home-header">
       <div class="overlay"></div>
       <div class="container">
          <div class="row">
@@ -98,6 +97,6 @@
    {{ session.show('logout') }}
    {{ session.show('delete_account') }}
 
-
+</body>
 {% endblock %}
 

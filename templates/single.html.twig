@@ -4,42 +4,116 @@
     {{ article.title}}
 {% endblock %}
 {% block body %}
-    {{ session.show('add_comment') }}
-    <article>
-        <h2>{{ article.title }}</h2>
-        <p>{{ article.content|raw }}</p>
-        <p>Créé le : {{ article.date }}</p>
-    </article>
-
-    {% if session.get('role') == 'admin' %}
-        <a href= "../public/index.php?route=editArticle&articleId={{ article.getId() }}">Editer l'article</a>
-        <a href="../public/index.php?route=deleteArticle&articleId={{ article.getId() }}">Supprimer l'article</a>
-    {% endif %}
-    <div class="actions">
-
+<body>
+{% include 'navigation.html.twig' %}
+<!-- Page Header -->
+<header class="masthead" id="single-header" >
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h2>{{ article.title }}</h2>
+                    <span class="subheading">Jean Forteroche</span>
+                </div>
+            </div>
+        </div>
     </div>
-    {% if session.get('pseudo') %}
-    <h3>Ajouter un commentaire :</h3>
-    {{ include('form_comment.html.twig') }}
-        {% else %}
-            <p>Connectez-vous ou enregistez-vous pour laisser un commentaire : <a href="../public/index.php?route=login">Connexion </a><a href="../public/index.php?route=register">Inscription</a></p>
-    {% endif %}
-    <h3>Commentaires :</h3>
-    {% for comment in comments%}
-        <strong>{{ comment.pseudo }}</strong>
-        <p>{{ comment.content }}</p>
+</header>
 
 
-        {% if comment.isFlag()%}
-            <p>Commentaire déjà signalé</p>
-        {% else %}
-            <a href="../public/index.php?route=flagComment&commentId={{ comment.getId() }}">Signaler le commentaire</a></p>
-        {% endif %}
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p>{{ article.content|raw }}</p>
+                <p>Créé le : {{ article.date }}</p>
+            </div>
+        </div>
+    </div>
+</article>
 
-        {% if session.get('role') == 'admin' %}
-            <p><a href="../public/index.php?route=deleteComment&commentId={{ comment.getId() }}">Supprimer le commentaire</a></p>
-        {% endif %}
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-9 mx-auto" >
+                {% if session.get('pseudo') %}
+                    <h3>Ajouter un commentaire :</h3>
+                    {{ include('form_comment.html.twig') }}
+                {% else %}
+                    <p>Connectez-vous ou enregistez-vous pour laisser un commentaire : <a href="../public/index.php?route=login">Connexion </a><a href="../public/index.php?route=register">Inscription</a></p>
+                {% endif %}
+                <h3>Commentaires :</h3>
+                {% for comment in comments%}
+                    <strong>{{ comment.pseudo }}</strong>
+                    <p>{{ comment.content }}</p>
 
 
-    {% endfor %}
+                    {% if comment.isFlag()%}
+                        <p>Commentaire déjà signalé</p>
+                    {% else %}
+                        <a href="../public/index.php?route=flagComment&commentId={{ comment.getId() }}">Signaler le commentaire</a></p>
+                    {% endif %}
+
+                    {% if session.get('role') == 'admin' %}
+                        <p><a href="../public/index.php?route=deleteComment&commentId={{ comment.getId() }}">Supprimer le commentaire</a></p>
+                    {% endif %}
+
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item">
+                        <a href="#">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+            </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+            </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+            </span>
+                        </a>
+                    </li>
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+            </div>
+        </div>
+    </div>
+</footer>
+{{ session.show('add_comment') }}
+
+
+{% if session.get('role') == 'admin' %}
+    <a href= "../public/index.php?route=editArticle&articleId={{ article.getId() }}">Editer l'article</a>
+    <a href="../public/index.php?route=deleteArticle&articleId={{ article.getId() }}">Supprimer l'article</a>
+{% endif %}
+<div class="actions">
+
+</div>
+</body>
 {% endblock %}
