@@ -49,13 +49,6 @@ header.masthead .site-heading {
     color: white;
 }
 
-
-body {
-    font-size: 20px;
-    color: #212529;
-    font-family: 'Lora', 'Times New Roman', serif;
-}
-
 p {
     line-height: 1.5;
     margin: 30px 0;
@@ -324,6 +317,29 @@ header.masthead .post-heading .meta a {
     color: #0085A1;
 }
 
+.flag .unflag .delete{
+    width: 16px;
+    height: 16px;
+}
+.comment {
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    word-wrap: break-word;
+}
+#form-comment {
+    text-align: center;
+}
+#form-comment  #content, #form-comment  #pseudo{
+    border-radius: 10px;
+    width: 50%;
+}
+.comment-title {
+    color: grey;
+    text-align: center;
+    padding-top: 40px;
+}
 @media only screen and (min-width: 768px) {
     .post-preview > a > .post-title {
         font-size: 36px;

@@ -28,8 +28,8 @@
         {{ comment.pseudo }}
         {{ comment.content | striptags | slice(0, 150)}}
         {{ comment.date }}
-        <p><a href="../public/index.php?route=unflagComment&commentId={{ comment.getId() }}">Désignaler le commentaire</a></p>
-        <p><a href="../public/index.php?route=deleteComment&commentId={{ comment.getId() }}">Supprimer le commentaire</a></p>
+        <a href="../public/index.php?route=unflagComment&commentId={{ comment.getId() }}"><img src="{{ BASE_URL }}./public/css/img/unflag.png" alt="désignaler" /></a>
+        <a href="../public/index.php?route=deleteComment&commentId={{ comment.getId() }}"><img src="{{ BASE_URL }}./public/css/img/delete.png" alt="supprimer" /></a>
     {% endfor %}
     <h2>Utilisateurs</h2>
 
@@ -42,7 +42,7 @@
         <td>{{ user.role }}</td>
         <td>
             {%  if user.role() != 'admin' %}
-            <a href="../public/index.php?route=deleteUser&userId={{ user.getId() }}">Supprimer</a>
+            <a href="../public/index.php?route=deleteUser&userId={{ user.getId() }}"><img src="{{ BASE_URL }}./public/css/img/delete.png" alt="suppression" title="Supprimer l'utilisateur"/></a>
                 {% else %}
             Suppression impossible !
             {% endif %}

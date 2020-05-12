@@ -42,6 +42,8 @@ abstract class Controller
         $this->loader=new FilesystemLoader('../templates/');
         $this->twig = new Environment($this->loader,['debug'=>true]);
         $this->twig->addGlobal("session", $this->session);
+        $this->twig->addGlobal("BASE_URL", BASE_URL. '/');
+
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
 
     }

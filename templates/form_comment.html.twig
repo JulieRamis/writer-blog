@@ -2,7 +2,7 @@
     {% set content=post.get('content') %}
     {% set pseudo=post.get('pseudo') %}
 {% endif %}
-<form method="post" action="../public/index.php?route=addComment&articleId={{article.id}}">
+<form method="post" id="form-comment" action="../public/index.php?route=addComment&articleId={{article.id}}">
     <label for="pseudo">Pseudo</label><br>
     <input type="text" id="pseudo" name="pseudo" value="{{ session.get('pseudo') }}"><br>
     {{ errors['pseudo'] }}
