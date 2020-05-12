@@ -16,6 +16,11 @@ header.masthead {
     height: 600px;
 }
 
+#profile-header {
+    background-image: url('img/profile.jpg');
+    height: 700px;
+}
+
 header.masthead .overlay {
     position: absolute;
     top: 0;
@@ -446,18 +451,17 @@ footer .copyright {
     padding: 25px 35px;
 }
 
-
-
-
-
-.form-sign {
-    display: -ms-flexbox;
+.button-profile{
+    justify-content: space-around;
     display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-color: #f5f5f5;
+}
+
+.button-profile a{
+    width: 30%;
+}
+.title-profile {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
 .form-signin {

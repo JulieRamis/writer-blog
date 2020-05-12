@@ -3,11 +3,27 @@
    Mon profil
 {% endblock %}
 {% block body %}
+    <body>
+    {% include 'navigation.html.twig' %}
+    <!-- Page Header -->
+    <header class="masthead" id="profile-header" >
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>Profil de {{ session.get('pseudo') }}</h1>
+                        <span class="subheading">Ravis de vous revoir</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <h2>{{ session.get('pseudo') }}</h2>
-    <p>{{ session.get('id') }}</p>
+    <h3 class="title-profile">Que souhaitez-vous faire ?</h3>
 
-    <a href="../public/index.php?route=updatePassword">Modifier son mot de passe</a>
-    <a href="../public/index.php?route=deleteAccount">Supprimer son compte</a>
+     <p class="button-profile"><a href="../public/index.php?route=updatePassword"><button class="btn btn-lg btn-primary btn-block">Modifier mon mot de passe</button></a>
+     <a href="../public/index.php?route=deleteAccount"><button class="btn btn-lg btn-primary btn-block" id="delete-account">Supprimer mon compte</button></a></p>
 
+    </body>
 {% endblock %}

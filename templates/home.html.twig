@@ -33,13 +33,9 @@
                   <h2><a href="../public/index.php?route=article&articleId={{ article.id }}">{{ article.title }}</a></h2>
                   <h3>{{ article.content | striptags | slice(0, 150) | raw}}</h3>
                   <p>{{ article.date }}</p>
-            </div>
-               {% endfor %}
 
-            <!-- Pager -->
-            <div class="clearfix">
-               <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-            </div>
+               {% endfor %}
+         </div>
          </div>
       </div>
    </div>
