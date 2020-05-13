@@ -28,12 +28,13 @@
       <div class="row">
          <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-preview">
-
+                <h2>Derniers chapitres :</h2>
                {% for article in articles  %}
+                   <article class="article-list">
                   <h2><a href="../public/index.php?route=article&articleId={{ article.id }}">{{ article.title }}</a></h2>
                   <h3>{{ article.content | striptags | slice(0, 150) | raw}}</h3>
                   <p>{{ article.date }}</p>
-
+                   </article>
                {% endfor %}
          </div>
          </div>

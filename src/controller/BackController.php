@@ -138,13 +138,17 @@ class BackController extends Controller
     public function updatePassword(Parameter $post)
     {
         if($this->checkLoggedIn()){
-            if($post->get('submit')) {
+            $errors = $this->validation->validate($post, 'User');
+            var_dump($errors);
+            if(!$errors && $post->get('submit')) {
                 $this->userDAO->updatePassword($post, $this->session->get('pseudo'));
                 $this->session->set('update_password', 'Le mot de passe a été mis à jour');
                 header('Location: ../public/index.php?route=profile');
             }
+
             echo $this->twig->render('update_password.html.twig', [
-                'session'=>$this->session
+                'session'=>$this->session,
+                'errors' =>$errors
             ]);
         }
 

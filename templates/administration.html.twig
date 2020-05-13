@@ -4,7 +4,8 @@
 {% endblock %}
 
 {% block body %}
-
+    <body id="administration">
+    {% include 'navigation.html.twig' %}
     <h1>Mon blog</h1>
     <p>En construction</p>
 
@@ -12,16 +13,19 @@
     {{ session.show('edit_article') }}
     {{ session.show('delete_article') }}
     {{ session.show('delete_comment') }}
-
-    <h2>Articles</h2>
-    <a href="../public/index.php?route=addArticle">Nouvel article</a>
-
+    <p class="button-profile">
+    <button class="btn btn-lg btn-dark btn-block"><a href="#article">Articles</a></button>
+    <button class="btn btn-lg btn-dark btn-block"><a href="#comment-flag">Commentaires signalés</a> </button>
+    <button class="btn btn-lg btn-dark btn-block"><a href="#user-list">Liste des membres</a></button>
+    <button class="btn btn-lg btn-dark btn-block"><a href="../public/index.php?route=addArticle">Nouvel article</a></button>
+    </p>
+    <h2 id="articles">Articles</h2>
     {% for article in articles  %}
         <h2><a href="../public/index.php?route=article&articleId={{ article.id }}">{{ article.title }}</a></h2>
         {{ article.content | striptags | slice(0, 150) | raw}}
     {% endfor %}
 
-    <h2>Commentaires signalés</h2>
+    <h2 id="comment-flag">Commentaires signalés</h2>
 
     {% for comment in comments  %}
         <h2><a href="../public/index.php?route=article&articleId={{ comment.id }}"></a></h2>
@@ -31,7 +35,8 @@
         <a href="../public/index.php?route=unflagComment&commentId={{ comment.getId() }}"><img src="{{ BASE_URL }}./public/css/img/unflag.png" alt="désignaler" /></a>
         <a href="../public/index.php?route=deleteComment&commentId={{ comment.getId() }}"><img src="{{ BASE_URL }}./public/css/img/delete.png" alt="supprimer" /></a>
     {% endfor %}
-    <h2>Utilisateurs</h2>
+
+    <h2 id="user-list">Utilisateurs</h2>
 
 <table>
     {% for user in users  %}
@@ -50,5 +55,5 @@
         </tr>
       {% endfor %}
 </table>
-
+    </body>
 {% endblock %}

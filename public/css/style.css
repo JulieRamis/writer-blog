@@ -1,4 +1,13 @@
-
+#administration {
+    background-color: #898b8c;
+}
+#administration h2{
+    color: #2b2b2b;
+}
+#administration a{
+    text-decoration: none;
+    color: white;
+}
 header.masthead {
     margin-bottom: 50px;
     background: no-repeat scroll center ;
@@ -284,7 +293,12 @@ header.masthead .post-heading .meta a {
         font-size: 30px;
     }
 }
-
+.article-list {
+    border-radius: 10px;
+    border: 2px grey solid;
+    padding: 20px;
+    margin: 20px;
+}
 .post-preview > a {
     color: #212529;
 }
@@ -429,6 +443,7 @@ footer .copyright {
     font-size: 14px;
     font-weight: 800;
     padding: 15px 25px;
+    margin : 8px;
     letter-spacing: 1px;
     text-transform: uppercase;
     border-radius: 0;

@@ -59,8 +59,9 @@ class  FrontController extends Controller
 
     public function register(Parameter $post)
     {
+        $errors = $this->validation->validate($post, 'User');
         if($post->get('submit')) {
-            $errors = $this->validation->validate($post, 'User');
+
             if($this->userDAO->checkUser($post)) {
                 $errors['pseudo'] = $this->userDAO->checkUser($post);
             }
@@ -69,13 +70,13 @@ class  FrontController extends Controller
                 $this->session->set('register', 'Votre inscription a bien été effectuée');
                 header('Location: ../public/index.php');
             }
-            echo $this->twig->render('register.html.twig', [
-                'post' => $post,
-                'errors' => $errors
-            ]);
 
         }
-        echo $this->twig->render('register.html.twig');
+
+        echo $this->twig->render('register.html.twig', [
+            'post' => $post,
+            'errors' => $errors
+        ]);
     }
 
     public function login(Parameter $post)
@@ -91,12 +92,12 @@ class  FrontController extends Controller
             }
             else {
                 $this->session->set('error_login', 'Le pseudo ou le mot de passe sont incorrects');
-                echo $this->twig->render('login.html.twig', [
-                    'post'=> $post
-                ]);
             }
         }
-        echo $this->twig->render('login.html.twig');
+        echo $this->twig->render('login.html.twig', [
+            'post'=> $post,
+            'session' => $this->session
+        ]);
     }
 
 
