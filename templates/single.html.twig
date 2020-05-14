@@ -1,120 +1,134 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-    {{ article.title}}
+    {{ article.title }}
 {% endblock %}
 {% block body %}
-<body>
-{% include 'navigation.html.twig' %}
-<!-- Page Header -->
-<header class="masthead" id="single-header" >
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h2>{{ article.title }}</h2>
-                    <span class="subheading">Jean Forteroche</span>
+    <body>
+    {% include 'navigation.html.twig' %}
+    <!-- Page Header -->
+    <header class="masthead" id="single-header">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h2>{{ article.title }}</h2>
+                        <span class="subheading">Jean Forteroche</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <p>{{ article.content|raw }}</p>
+                    <p>Créé le : {{ article.date }}</p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <div class="button-article">
+        <a href="../public/index.php?route=editArticle&articleId={{ article.getId() }}">
+            <button type="button" class="btn btn-primary">Editer l'article</button>
+        </a>
+        <a href="../public/index.php?route=deleteArticle&articleId={{ article.getId() }}">
+            <button type="button" class="btn btn-primary">Supprimer l'article</button>
+        </a>
+    </div>
+    {% if session.get('role') == 'admin' %}
+
+    {% endif %}
+    <div class="actions">
+
+    </div>
+
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto" id="comment">
+                    {% if session.get('pseudo') %}
+                        <h3 class="comment-title">Ajouter un commentaire :</h3>
+                        {{ include('form_comment.html.twig') }}
+                    {% else %}
+                        <p class="comment-title">Connectez-vous ou enregistez-vous pour laisser un commentaire : <a
+                                    href="../public/index.php?route=login">Connexion </a><a
+                                    href="../public/index.php?route=register">Inscription</a></p>
+                    {% endif %}
+                    <h3 class="comment-title">Commentaires :</h3>
+
+                    {% for comment in comments %}
+                        <article class="comment">
+                            <strong>{{ comment.pseudo }}</strong>
+                            <p>{{ comment.content }}</p>
+
+                            {% if session.get('pseudo') %}
+                                {% if comment.isFlag() %}
+                                    <p class="comment-flag">Commentaire déjà signalé</p>
+                                {% else %}
+                                    <a class="flag"
+                                       href="../public/index.php?route=flagComment&commentId={{ comment.getId() }}">
+                                        <img src="{{ BASE_URL }}./public/css/img/flag.png" alt="signalement"
+                                             title="Signaler"/></a>
+                                {% endif %}
+
+                                {% if session.get('role') == 'admin' %}
+                                    <a class="delete"
+                                       href="../public/index.php?route=deleteComment&commentId={{ comment.getId() }}">
+                                        <img src="{{ BASE_URL }}./public/css/img/delete.png" alt="suppression"
+                                             title="Supprimer"/></a>
+                                {% endif %}
+                            {% endif %}
+                        </article>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-</header>
 
+    <hr>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <p>{{ article.content|raw }}</p>
-                <p>Créé le : {{ article.date }}</p>
-            </div>
-        </div>
-    </div>
-</article>
-
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto" id="comment">
-                {% if session.get('pseudo') %}
-                    <h3 class="comment-title">Ajouter un commentaire :</h3>
-                    {{ include('form_comment.html.twig') }}
-                {% else %}
-                    <p class="comment-title">Connectez-vous ou enregistez-vous pour laisser un commentaire : <a href="../public/index.php?route=login">Connexion </a><a href="../public/index.php?route=register">Inscription</a></p>
-                {% endif %}
-                <h3 class="comment-title">Commentaires :</h3>
-
-                {% for comment in comments%}
-                    <article class="comment">
-                    <strong>{{ comment.pseudo }}</strong>
-                    <p>{{ comment.content }}</p>
-
-                    {% if session.get('pseudo') %}
-                    {% if comment.isFlag()%}
-                        <p class="comment-flag">Commentaire déjà signalé</p>
-                    {% else %}
-                     <a class="flag" href="../public/index.php?route=flagComment&commentId={{ comment.getId() }}"> <img src="{{ BASE_URL }}./public/css/img/flag.png" alt="signalement" title="Signaler"/></a>
-                    {% endif %}
-
-                    {% if session.get('role') == 'admin' %}
-                        <a class="delete" href="../public/index.php?route=deleteComment&commentId={{ comment.getId() }}"> <img src="{{ BASE_URL }}./public/css/img/delete.png" alt="suppression" title="Supprimer"/></a>
-                    {% endif %}
-                    {% endif %}
-                    </article>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</section>
-
-<hr>
-
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <ul class="list-inline text-center">
-                    <li class="list-inline-item">
-                        <a href="#">
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item">
+                            <a href="#">
             <span class="fa-stack fa-lg">
               <i class="fas fa-circle fa-stack-2x"></i>
               <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
             </span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
             <span class="fa-stack fa-lg">
               <i class="fas fa-circle fa-stack-2x"></i>
               <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
             </span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
             <span class="fa-stack fa-lg">
               <i class="fas fa-circle fa-stack-2x"></i>
               <i class="fab fa-github fa-stack-1x fa-inverse"></i>
             </span>
-                        </a>
-                    </li>
-                </ul>
-                <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
-{{ session.show('add_comment') }}
+    </footer>
 
-
-{% if session.get('role') == 'admin' %}
-    <a href= "../public/index.php?route=editArticle&articleId={{ article.getId() }}">Editer l'article</a>
-    <a href="../public/index.php?route=deleteArticle&articleId={{ article.getId() }}">Supprimer l'article</a>
-{% endif %}
-<div class="actions">
-
-</div>
-</body>
+    </body>
 {% endblock %}

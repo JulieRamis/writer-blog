@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-   Edit article
+    Edit article
 {% endblock %}
 {% block body %}
-    <div>
-        <form method="post" action="../public/index.php?route=editArticle&articleId={{ post.get('id')}}">
+    <body id="add-article">
+    <article class="form-article">
+        <form method="post" action="../public/index.php?route=editArticle&articleId={{ post.get('id') }}">
             {% include 'form_article.html.twig' %}
 
-            <input type="submit" value="mettre à jour" id="submit" name="submit">
+            <button type="submit" class="btn btn-primary" value="mettre à jour" id="submit" name="submit">mettre à
+                jour
+            </button>
         </form>
-        <a href="../public/index.php">Retour à l'accueil</a>
-    </div>
+        <a href="../public/index.php" class="back-home">RETOUR A L'ACCUEIL</a>
+    </article>
+    </body>
 {% endblock %}

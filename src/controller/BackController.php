@@ -78,7 +78,6 @@ class BackController extends Controller
                     'errors' => $errors,
                     'post' => $post
                 ]);
-                var_dump('toto');
 
             }
             else {
@@ -90,7 +89,6 @@ class BackController extends Controller
                 echo $this->twig->render('edit_article.html.twig', [
                     'post' => $post
                 ]);
-                var_dump('tata');
 
             }
         }
@@ -139,7 +137,6 @@ class BackController extends Controller
     {
         if($this->checkLoggedIn()){
             $errors = $this->validation->validate($post, 'User');
-            var_dump($errors);
             if(!$errors && $post->get('submit')) {
                 $this->userDAO->updatePassword($post, $this->session->get('pseudo'));
                 $this->session->set('update_password', 'Le mot de passe a été mis à jour');

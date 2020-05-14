@@ -1,17 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block title %}
- nouvel article
+    nouvel article
 {% endblock %}
 {% block body %}
-    <div>
-
-
+    <body id="add-article">
+    <article class="form-article">
         <form method="post" action="../public/index.php?route=addArticle">
             {% include 'form_article.html.twig' %}
-
-
-            <input type="submit" value="Envoyer" id="submit" name="submit">
+            <button type="submit" class="btn btn-primary" value="Envoyer" id="submit" name="submit">Envoyer</button>
         </form>
-        <a href="../public/index.php">Retour à l'accueil</a>
-    </div>
+        <a href="../public/index.php" class="back-home">RETOUR A L'ACCUEIL</a>
+    </article>
+    </body>
 {% endblock %}

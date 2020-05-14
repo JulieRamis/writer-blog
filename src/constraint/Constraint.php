@@ -20,7 +20,7 @@ class Constraint
     }
     public function maxLength($name, $value, $maxSize)
     {
-        if(strlen($value) > $maxSize){
+        if(strlen($value)>$maxSize){
             return 'Le champ '.$name.' doit contenir au maximum '.$maxSize.' caractères.';
         }
     }

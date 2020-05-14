@@ -1,22 +1,21 @@
-{% if post is defined and post.get('id') is defined  %}
+{% if post is defined and post.get('id') is defined %}
     {% set title=post.get('title') %}
     {% set content=post.get('content') %}
 
 {% endif %}
 
+<article class="form-article">
+<label for="title">Titre</label>
+<input type="text" id="title" name="title" class="title-article" value="{{ title }}">
+{{ errors['title'] }}
 
 
-    <label for="title">Titre</label>
-    <input type="text" id="title" name="title" value="{{title}}">
-    {{ errors['title'] }}
+<label for="content">Contenu</label>
+<textarea id="content" name="content">{{ content }}</textarea>
+{{ errors['content'] }}
 
+</article>
 
-    <label for="content">Contenu</label>
-    <textarea id="content" name="content">{{content}}</textarea>
-    {{ errors['content'] }}
-
-
-
-
-<script src="https://cdn.tiny.cloud/1/4lsmrhwwu4zxksgg0vsqozfkos29k9e4ezo4zmijuiumiaae/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>tinymce.init({selector:'textarea'});</script>
+<script src="https://cdn.tiny.cloud/1/4lsmrhwwu4zxksgg0vsqozfkos29k9e4ezo4zmijuiumiaae/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+<script>tinymce.init({selector: 'textarea'});</script>

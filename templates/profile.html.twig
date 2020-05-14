@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-   Mon profil
+    Mon profil
 {% endblock %}
 {% block body %}
     <body>
     {% include 'navigation.html.twig' %}
     <!-- Page Header -->
-    <header class="masthead" id="profile-header" >
+    <header class="masthead" id="profile-header">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -22,11 +22,15 @@
 
     <h3 class="title-profile">Que souhaitez-vous faire ?</h3>
 
-     <p class="button-profile"><a href="../public/index.php?route=updatePassword"><button class="btn btn-lg btn-primary btn-block">Modifier mon mot de passe</button></a>
-         {% if session.get('role') == 'user' %}
-             <a href="../public/index.php?route=deleteAccount"><button class="btn btn-lg btn-primary btn-block" id="delete-account">Supprimer mon compte</button></a>
-         {% endif %}
-     </p>
+    <p class="button-profile"><a href="../public/index.php?route=updatePassword">
+            <button class="btn btn-lg btn-primary btn-block">Modifier mon mot de passe</button>
+        </a>
+        {% if session.get('role') == 'user' %}
+            <a href="../public/index.php?route=deleteAccount">
+                <button class="btn btn-lg btn-primary btn-block" id="delete-account">Supprimer mon compte</button>
+            </a>
+        {% endif %}
+    </p>
 
     </body>
 {% endblock %}
