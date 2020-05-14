@@ -22,7 +22,6 @@ class  FrontController extends Controller
     public function article($articleId)
     {
         $article = $this->articleDAO->getArticle($articleId);
-
         $comments = $this->commentDAO->getComments($articleId);
         echo $this->twig->render('single.html.twig',[
             'article' => $article,
@@ -33,9 +32,10 @@ class  FrontController extends Controller
     public function addComment(Parameter $post, $articleId)
     {
         if($post->get('submit')) {
+            $userId=$this->session->get('id');
             $errors = $this->validation->validate($post, 'Comment');
             if(!$errors) {
-                $this->commentDAO->addComment($post, $articleId);
+                $this->commentDAO->addComment($post, $userId, $articleId);
                 $this->session->set('add_comment', 'Le nouveau commentaire a bien été ajouté');
                 header('Location: ../public/index.php');
             }

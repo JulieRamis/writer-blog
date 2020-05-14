@@ -57,7 +57,7 @@
 
                         {% for comment in comments %}
                             <h2><a href="../public/index.php?route=article&articleId={{ comment.id }}"></a></h2>
-                            {{ comment.pseudo }}
+                            {{ comment.user }}
                             {{ comment.content | striptags | slice(0, 150) }}
                             {{ comment.date }}
                             <a href="../public/index.php?route=unflagComment&commentId={{ comment.getId() }}"><img

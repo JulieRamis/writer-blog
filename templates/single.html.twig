@@ -64,7 +64,7 @@
 
                     {% for comment in comments %}
                         <article class="comment">
-                            <strong>{{ comment.pseudo }}</strong>
+                            <strong>{{ comment.user }}</strong>
                             <p>{{ comment.content }}</p>
 
                             {% if session.get('pseudo') %}

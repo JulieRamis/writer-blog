@@ -27,7 +27,7 @@
         </a>
         {% if session.get('role') == 'user' %}
             <a href="../public/index.php?route=deleteAccount">
-                <button class="btn btn-lg btn-primary btn-block" id="delete-account">Supprimer mon compte</button>
+                <button class="btn btn-lg btn-primary btn-block" id="delete-account" onclick="return confirm('Etes-vous sur de votre choix ?')">Supprimer mon compte</button>
             </a>
         {% endif %}
     </p>

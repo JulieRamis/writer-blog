@@ -8,13 +8,13 @@ class Comment
 {
     private $id;
 
-    private $pseudo;
-
     private $content;
 
     private $date;
 
     private $flag;
+
+    private $user;
 
     public function getId()
     {
@@ -26,17 +26,15 @@ class Comment
         $this->id = $id;
     }
 
-
-    public function getPseudo()
+    public function getUser()
     {
-        return $this->pseudo;
+        return $this->user;
     }
 
-    public function setPseudo($pseudo)
+    public function setUser($user)
     {
-        $this->pseudo = $pseudo;
+        $this->user = $user;
     }
-
 
     public function getContent()
     {

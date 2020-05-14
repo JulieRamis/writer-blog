@@ -3,8 +3,8 @@
     {% set pseudo=post.get('pseudo') %}
 {% endif %}
 <form method="post" id="form-comment" action="../public/index.php?route=addComment&articleId={{ article.id }}">
-    <label for="pseudo">Pseudo</label><br>
-    <input type="text" id="pseudo" name="pseudo" value="{{ session.get('pseudo') }}"><br>
+    <p>Pseudo :</p>
+    {{ session.get('pseudo') }}
     {{ errors['pseudo'] }}
     <label for="content">Message</label><br>
     <textarea id="content-comment" name="content"></textarea><br>
