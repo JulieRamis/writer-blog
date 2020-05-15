@@ -6,6 +6,7 @@
 {% block body %}
     <body>
     {% include 'navigation.html.twig' %}
+
     <!-- Page Header -->
     <header class="masthead" id="home-header">
         <div class="overlay"></div>
@@ -24,16 +25,16 @@
     <!-- Main Content -->
 
     <div class="container">
-       <p class="session-message">
-           {{ session.show('flag_comment') }}
-           {{ session.show('register') }}
-           {{ session.show('login') }}
-           {{ session.show('logout') }}
-           {{ session.show('delete_account') }}
-           {{ session.show('add_comment') }}
-       </p>
+        <p class="session-message">
+            {{ session.show('flag_comment') }}
+            {{ session.show('register') }}
+            {{ session.show('login') }}
+            {{ session.show('logout') }}
+            {{ session.show('delete_account') }}
+            {{ session.show('add_comment') }}
+        </p>
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="col-lg-8 col-md-12 mx-auto">
                 <div class="post-preview">
                     <h2>Derniers chapitres :</h2>
                     {% for article in articles %}
@@ -55,48 +56,9 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
-                    <ul class="list-inline text-center">
-                        <li class="list-inline-item">
-                            <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
-                </div>
-            </div>
+            <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
         </div>
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="js/clean-blog.min.js"></script>
-
-
 
 
     </body>

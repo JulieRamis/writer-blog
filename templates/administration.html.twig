@@ -60,9 +60,9 @@
                             {{ comment.user }}
                             {{ comment.content | striptags | slice(0, 150) }}
                             {{ comment.date }}
-                            <a href="../public/index.php?route=unflagComment&commentId={{ comment.getId() }}"><img
+                            <a href="../public/index.php?route=unflagComment&commentId={{ comment.getId() }}" title="Désignaler"><img
                                         src="{{ BASE_URL }}./public/css/img/unflag.png" alt="désignaler"/></a>
-                            <a href="../public/index.php?route=deleteComment&commentId={{ comment.getId() }}"><img
+                            <a href="../public/index.php?route=deleteComment&commentId={{ comment.getId() }}" title="Supprimer"><img
                                         src="{{ BASE_URL }}./public/css/img/delete.png" alt="supprimer"/></a>
                         {% endfor %}
                     </div>
@@ -99,8 +99,6 @@
                 </div>
             </div>
         </div>
-
-
     </article>
     </body>
 {% endblock %}
