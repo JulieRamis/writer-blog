@@ -20,7 +20,6 @@ abstract class DAO
         return $this->connection;
     }
 
-    //connection db
     private function getConnection()
     {
         try{
@@ -41,7 +40,6 @@ abstract class DAO
         if($parameters)
         {
             $result = $this->checkConnection()->prepare($sql);
-            //Defines recovery mode
             $result->execute($parameters);
             return $result;
         }
